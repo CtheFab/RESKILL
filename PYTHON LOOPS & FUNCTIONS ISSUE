@@ -1,0 +1,71 @@
+#register
+# - first name, last name, password, email
+#generate user id
+
+
+#login 
+# - account number & password
+
+
+#bank operations
+
+#initializing the system
+import random
+
+database = {} #dictionary
+
+def init():
+
+    isvalidoptionselected = False
+    print('welcome to bankPHP')
+    
+    while isvalidoptionselected == False:
+        
+        haveaccount = int(input("Do you have an account with us: 1(yes) 2 (no)\n"))
+        
+        if(haveaccount == 1):
+            isvalidoptionselected = True
+            login()
+        elif(haveaccount == 2):
+            isvalidoptionselected = True
+            register()
+        else:
+            print('you have selected an invalid option')    
+
+def login():
+    print("Login to your account")
+    
+    bankoperation()
+
+def register():
+    
+    print('****** Register **********')
+    
+    email = input('what is your email address? \n')
+    first_name = input('what is your first name? \n')
+    last_name = input('what is your last name? \n')
+    password = input('create a password for yourself \n')
+    
+    accountnumber = generationaccountnumber()
+    
+    database[accountnumber] = [ first_name, last_name, email, password ]
+    
+    print("Your account has been created")
+    
+    login()
+
+def bankoperation():
+    print('some operations')
+
+def generationaccountnumber():
+    
+    print('generating account number')
+    return random.randrange(1111111111,9999999999)
+
+
+
+
+#### Actual banking system
+
+#print(generationaccountnumber())
+init()
