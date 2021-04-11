@@ -1,0 +1,111 @@
+#register
+# - first name, second name, password, email
+# - generate user id
+
+
+#login 
+# - email & password
+
+
+#bank operations
+
+#initializing the system
+import random
+
+database = {} #dictionary
+
+def init():
+
+    print('welcome to bankPHP')
+     
+    haveaccount = int(input("Do you have an account with us: 1(yes) 2 (no)\n"))
+        
+    if(haveaccount == 1):
+        login()
+    elif(haveaccount == 2):
+        register()
+    else:
+        print('you have selected an invalid option')    
+        init()
+        
+
+def login():
+    print("********* Login *********")
+        
+    accountnumberfromuser = int(input("what is your account number? \n"))
+    password = input("what is your passsword \n")
+       
+    for accountnumber, userdetails in database.items():
+        if(accountnumber == accountnumberfromuser):
+            if(userdetails[3] == password):
+                 bankoperation(userdetails)
+                   
+       print("invalid account or password")
+       login()
+
+def register():
+    
+    print('****** Register **********')
+    
+    email = input('what is your email address? \n')
+    first_name = input('what is your first name? \n')
+    last_name = input('what is your last name? \n')
+    password = input('create a password for yourself \n')
+    
+    accountnumber = generationaccountnumber()
+    
+    database[accountnumber] = [ first_name, last_name, email, password ]
+
+    print("Your account has been created")
+    print(" == ===== ===== ===== ===")
+    print("your account number is: %d" % accountnumber)
+    print("make sure you keep it safe")
+    print(" == ==== ===== ===== ===")
+    
+    login()
+
+def bankoperation(user):
+    
+    print('welcome %s %s' % ( user[0], user[1] ) )
+
+    
+    selectedoption = input("what would you like to do? (1) deposit (2) withdrawdal (3) logout (4) exit \n")
+        
+    if(selectedoption == 1):
+        depositoperation
+    elif(selectedoption == 2):
+        isselectedoption = True
+        withdrawaloperation
+    elif(selectedoption == 3):
+        isselectedoption = True
+        logout()
+    elif(selectedoption == 4):
+        isselectedoption = True
+        exit()
+    else:
+        print("invalid option selected")
+        bankoperation(user):
+            
+    
+ 
+    
+def withdrawaloperation():
+    print("withdrawal")
+    
+def depositoperation():
+    print("deposit")
+          
+def generationaccountnumber():
+    
+    print('generating account number')
+    return random.randrange(1111111111,9999999999)
+
+def logout():
+    login()
+
+
+
+#### Actual banking system
+
+#print(generationaccountnumber())
+init()
